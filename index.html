@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 <style>
-:root {
+:root{
   --bg:#0b1420;--bg2:#0d1a2d;--bg3:#111f35;
   --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);
   --text:#e2e8f0;--text2:#7a90a8;--text3:#3d5068;
@@ -21,7 +21,6 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--text);}
-
 .topbar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:52px;background:rgba(11,20,32,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);gap:12px;}
 .logo{display:flex;align-items:center;gap:10px;flex-shrink:0;}
 .logo-icon{width:28px;height:28px;background:var(--accent);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;color:white;}
@@ -43,7 +42,6 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 .nav-tab.active{background:var(--accent);color:white;}
 .nav-tab.qtab{color:var(--accent2);border-color:rgba(34,211,238,0.3);}
 .nav-tab.qtab:hover{background:rgba(34,211,238,0.1);}
-
 .app{display:flex;height:100vh;padding-top:52px;}
 .map-panel{flex:1;overflow-y:auto;padding:16px;}
 .side-panel{width:300px;background:var(--bg2);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;}
@@ -52,8 +50,6 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 #page-map{flex-direction:row;}
 #page-stats{padding:20px;overflow-y:auto;}
 #page-records{padding:20px;overflow-y:auto;}
-
-/* Legend */
 .legend{display:flex;gap:12px;flex-wrap:wrap;padding:8px 12px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;margin-bottom:16px;}
 .legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2);}
 .legend-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
@@ -61,17 +57,11 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 .legend-dot.partial{background:var(--yellow);}
 .legend-dot.willing{background:var(--blue);}
 .legend-dot.unsigned{background:var(--red);}
-
-/* Section */
 .section{margin-bottom:20px;}
 .sec-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
 .sec-title{font-size:11px;font-weight:500;color:var(--text2);letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap;}
 .sec-line{flex:1;height:1px;background:var(--border);}
-
-/* Building row - each building is one horizontal row */
-.bldg-row{display:flex;align-items:stretch;gap:4px;margin-bottom:6px;flex-wrap:wrap;}
-
-/* Address block */
+.bldg-row{display:flex;align-items:stretch;gap:4px;margin-bottom:6px;flex-wrap:nowrap;}
 .ab{cursor:pointer;border-radius:7px;padding:9px 12px;border:1px solid transparent;transition:all 0.15s;position:relative;min-width:105px;}
 .ab:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.3);}
 .ab.active{box-shadow:0 0 0 2px var(--accent2)!important;}
@@ -88,8 +78,6 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 .ab.willing .ab-fill{background:var(--blue);}
 .ab.unsigned .ab-fill{background:var(--red);}
 .ab-ratio{position:absolute;top:-7px;right:-5px;background:var(--bg);border:1px solid var(--border2);border-radius:9px;font-size:9px;padding:1px 5px;color:var(--text2);}
-
-/* Side panel */
 .panel-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:12px;color:var(--text3);}
 .panel-empty i{font-size:36px;}
 .panel-empty span{font-size:13px;}
@@ -123,12 +111,9 @@ textarea{height:60px;resize:none;}
 .hist-time{font-size:10px;color:var(--text3);}
 .hist-agent{color:var(--accent2);margin-left:4px;}
 .hist-note{color:var(--text2);margin-top:2px;}
-
 .loading{display:flex;align-items:center;justify-content:center;padding:40px;gap:10px;color:var(--text2);font-size:13px;}
 .spinner{width:20px;height:20px;border:2px solid var(--border2);border-top-color:var(--accent2);border-radius:50%;animation:spin 0.8s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
-
-/* Stats */
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:20px;}
 .stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;}
 .stat-card-label{font-size:11px;color:var(--text2);margin-bottom:8px;}
@@ -146,15 +131,11 @@ textarea{height:60px;resize:none;}
 .pd-bar-wrap{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden;}
 .pd-bar{height:100%;border-radius:3px;}
 .pd-val{width:70px;text-align:right;color:var(--text);}
-
-/* Records */
 .records-table{width:100%;border-collapse:collapse;font-size:12px;}
 .records-table th{text-align:left;padding:8px 12px;color:var(--text2);font-weight:500;border-bottom:1px solid var(--border);font-size:11px;}
 .records-table td{padding:8px 12px;border-bottom:1px solid var(--border);color:var(--text);}
 .records-table tr:hover td{background:var(--bg2);}
 .page-title{font-size:16px;font-weight:500;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
-
-/* Mobile */
 @media(max-width:768px){
   .topbar-stats{display:none;}
   .nav-tabs{display:none;}
@@ -162,14 +143,13 @@ textarea{height:60px;resize:none;}
   .side-panel{position:fixed;bottom:0;left:0;right:0;width:100%;height:80vh;border-left:none;border-top:1px solid var(--border);transform:translateY(100%);z-index:200;border-radius:16px 16px 0 0;transition:transform 0.3s ease;}
   .side-panel.open{transform:translateY(0);}
   .map-panel{padding:10px 8px;}
-  .ab{min-width:90px;}
-  .ab-name{font-size:12px;}
+  .ab{min-width:88px;}
+  .ab-name{font-size:11px;}
   .mobile-nav{display:flex!important;}
   .app{padding-bottom:56px;}
   #page-map{flex-direction:column;}
   .mobile-close-btn{display:flex!important;}
-  .legend{gap:8px;}
-  .legend-item{font-size:11px;}
+  .bldg-row{flex-wrap:wrap;}
 }
 .mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:8px 0;z-index:60;}
 .mobile-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:var(--text2);font-size:10px;padding:4px 0;}
@@ -186,7 +166,6 @@ textarea{height:60px;resize:none;}
 </style>
 </head>
 <body>
-
 <div class="topbar">
   <div class="logo">
     <div class="logo-icon"><i class="ti ti-building-estate"></i></div>
@@ -214,9 +193,7 @@ textarea{height:60px;resize:none;}
     </div>
   </div>
 </div>
-
 <div class="overlay" id="overlay" onclick="closePanel()"></div>
-
 <div class="app">
   <div id="page-map" class="page active">
     <div class="map-panel" id="map-panel">
@@ -237,11 +214,7 @@ textarea{height:60px;resize:none;}
         <div class="panel-body" id="p-body"></div>
         <div class="panel-foot">
           <div class="foot-label">更新簽約狀態</div>
-          <select id="status-sel">
-            <option value="已簽約">已簽約</option>
-            <option value="有意願">有意願</option>
-            <option value="未簽約">未簽約</option>
-          </select>
+          <select id="status-sel"><option value="已簽約">已簽約</option><option value="有意願">有意願</option><option value="未簽約">未簽約</option></select>
           <div class="foot-label">業務人員姓名</div>
           <input type="text" id="agent-name" placeholder="請輸入姓名">
           <div class="foot-label">拜訪紀錄</div>
@@ -253,88 +226,54 @@ textarea{height:60px;resize:none;}
       </div>
     </div>
   </div>
-
   <div id="page-stats" class="page">
     <div class="page-title"><i class="ti ti-chart-pie" style="color:var(--accent2)"></i>簽約統計</div>
     <div class="stats-grid" id="stats-cards"></div>
-    <div class="progress-detail">
-      <div class="pd-label">各項目進度</div>
-      <div id="pd-rows"></div>
-    </div>
+    <div class="progress-detail"><div class="pd-label">各項目進度</div><div id="pd-rows"></div></div>
   </div>
-
   <div id="page-records" class="page">
     <div class="page-title"><i class="ti ti-notes" style="color:var(--accent2)"></i>拜訪紀錄</div>
     <div id="records-content"><div class="loading"><div class="spinner"></div>載入中...</div></div>
   </div>
 </div>
-
 <div class="mobile-nav">
   <div class="mobile-nav-item active" onclick="showPage('map')"><i class="ti ti-map-2"></i><span>地圖</span></div>
   <div class="mobile-nav-item" onclick="showPage('stats')"><i class="ti ti-chart-pie"></i><span>統計</span></div>
   <div class="mobile-nav-item" onclick="showPage('records')"><i class="ti ti-notes"></i><span>紀錄</span></div>
   <div class="mobile-nav-item qitem" onclick="window.open('https://ivyfuh.github.io/hanhuang-query/','_blank')"><i class="ti ti-calculator"></i><span>權利試算</span></div>
 </div>
-
 <script>
 const API='https://script.google.com/macros/s/AKfycbzAuPGbtVF0e-jUvycfR4nT2y8x1DDq2pqUz5aiB7Sesbcz2az8CuM0XHwMRGix54yV/exec';
 const QUERY_URL='https://ivyfuh.github.io/hanhuang-query/';
 const SHEET_ID='15LypBkwdkRGdFeR_H1N6gY04detwRYHUB9peSNG_3y8';
 let DB=[],selectedAddr=null;
 
-// 照立體圖排列：每棟一排，1樓在左
+// 每棟一排，1樓在左，高樓在右
 const LAYOUT=[
-  { section:'光復南路 443 巷', rows:[
+  {section:'光復南路 443 巷',rows:[
     ['光復南路443巷2號','光復南路443巷2之1號','光復南路443巷2號3樓','光復南路443巷2號4樓'],
     ['光復南路443巷4號','光復南路443巷4號2樓','光復南路443巷4之2號','光復南路443巷4之3號'],
     ['光復南路443巷6號','光復南路443巷6之1號','光復南路443巷6號3樓','光復南路443巷6號4樓'],
     ['光復南路443巷8號','光復南路443巷8號2樓','光復南路443巷8號3樓','光復南路443巷8之3號'],
   ]},
-  { section:'光復南路 445 號', rows:[
+  {section:'光復南路 445 號',rows:[
     ['光復南路445號','光復南路445號2樓','光復南路445號3樓之1','光復南路445號4樓'],
-    ['光復南路445之8號'],
-    ['光復南路445之5號'],
-    ['光復南路445之4號'],
     ['光復南路445之1號'],
-    ['光復南路445之2號'],
+    ['光復南路445之2號','光復南路445之4號','光復南路445之5號','光復南路445之8號'],
   ]},
-  { section:'光復南路 447 號', rows:[
+  {section:'光復南路 447 號',rows:[
     ['光復南路447號','光復南路447號2樓','光復南路447號3樓','光復南路447號4樓'],
     ['光復南路447之1號'],
-    ['光復南路447之4號'],
-    ['光復南路447之5號'],
-    ['光復南路447之6號'],
-    ['光復南路447之7號'],
-    ['光復南路447之8號'],
-    ['光復南路447之9號'],
-    ['光復南路447之10號'],
-    ['光復南路447之11號'],
-    ['光復南路447之12號'],
-    ['光復南路447之13號'],
-    ['光復南路447之14號'],
-    ['光復南路447之15號'],
-    ['光復南路447之16號'],
-    ['光復南路447之17號'],
-    ['光復南路447之18號'],
-    ['光復南路447之19號'],
-    ['光復南路447之20號'],
-    ['光復南路447之21號'],
-    ['光復南路447之22號'],
-    ['光復南路447之23號'],
-    ['光復南路447之24號'],
-    ['光復南路447之25號'],
-    ['光復南路447之26號'],
-    ['光復南路447之27號'],
-    ['光復南路447之28號'],
-    ['光復南路447之29號'],
-    ['光復南路447之30號'],
-    ['光復南路447之31號'],
-    ['光復南路447之32號'],
-    ['光復南路447之33號'],
-    ['光復南路447之34號'],
-    ['光復南路447之35號'],
+    ['光復南路447之4號','光復南路447之5號','光復南路447之6號','光復南路447之7號'],
+    ['光復南路447之8號','光復南路447之9號','光復南路447之10號','光復南路447之11號'],
+    ['光復南路447之12號','光復南路447之13號','光復南路447之14號','光復南路447之15號'],
+    ['光復南路447之16號','光復南路447之17號','光復南路447之18號','光復南路447之19號'],
+    ['光復南路447之20號','光復南路447之21號','光復南路447之22號','光復南路447之23號'],
+    ['光復南路447之24號','光復南路447之25號','光復南路447之26號','光復南路447之27號'],
+    ['光復南路447之28號','光復南路447之29號','光復南路447之30號','光復南路447之31號'],
+    ['光復南路447之32號','光復南路447之33號','光復南路447之34號','光復南路447之35號'],
   ]},
-  { section:'純土地持有', rows:[
+  {section:'純土地持有',rows:[
     ['鄭素卿'],
     ['中華民國(國產署)'],
   ]},
@@ -343,8 +282,7 @@ const LAYOUT=[
 async function loadData(){
   try{
     const url=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=資料庫`;
-    const res=await fetch(url);
-    const text=await res.text();
+    const res=await fetch(url);const text=await res.text();
     const json=JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/)[1]);
     return json.table.rows.map(r=>r.c.map(c=>c?(c.v!==null?String(c.v):''):'')).filter((r,i)=>i>0&&r[0]);
   }catch(e){return[];}
@@ -353,8 +291,7 @@ async function loadData(){
 async function loadVisits(){
   try{
     const url=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=拜訪紀錄`;
-    const res=await fetch(url);
-    const text=await res.text();
+    const res=await fetch(url);const text=await res.text();
     const json=JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/)[1]);
     return json.table.rows.map(r=>r.c.map(c=>c?(c.v||''):'')).filter((r,i)=>i>0&&r[0]);
   }catch(e){return[];}
@@ -377,13 +314,10 @@ function buildDB(rows){
 
 function getStatus(owners){
   const t=owners.length,s=owners.filter(o=>o.status==='已簽約').length,w=owners.filter(o=>o.status==='有意願').length;
-  if(s===t)return'signed';
-  if(w>0)return'willing';
-  if(s>0)return'partial';
-  return'unsigned';
+  if(s===t)return'signed';if(w>0)return'willing';if(s>0)return'partial';return'unsigned';
 }
 function getPct(owners){return Math.round(owners.filter(o=>o.status==='已簽約').length/owners.length*100);}
-function statusClass(s){return s==='已簽約'?'signed':s==='有意願'?'willing':s==='部分簽約'?'partial':'unsigned';}
+function statusClass(s){return s==='已簽約'?'signed':s==='有意願'?'willing':'unsigned';}
 function shortLabel(addr){return addr.replace('光復南路','');}
 
 function makeBlock(entry,floorIdx,totalInRow){
@@ -402,22 +336,18 @@ function makeBlock(entry,floorIdx,totalInRow){
 
 function renderMap(){
   const panel=document.getElementById('map-panel');
-  panel.innerHTML='';
-  // Legend
   panel.innerHTML=`<div class="legend">
     <div class="legend-item"><div class="legend-dot signed"></div><span>全部已簽約</span></div>
     <div class="legend-item"><div class="legend-dot partial"></div><span>部分已簽約</span></div>
     <div class="legend-item"><div class="legend-dot willing"></div><span>有意願</span></div>
     <div class="legend-item"><div class="legend-dot unsigned"></div><span>未簽約</span></div>
   </div>`;
-
   LAYOUT.forEach(sec=>{
     const secEl=document.createElement('div');
     secEl.className='section';
     secEl.innerHTML=`<div class="sec-header"><div class="sec-title">${sec.section}</div><div class="sec-line"></div></div>`;
     sec.rows.forEach(row=>{
-      const rowEl=document.createElement('div');
-      rowEl.className='bldg-row';
+      const rowEl=document.createElement('div');rowEl.className='bldg-row';
       row.forEach((addr,idx)=>{
         const entry=DB.find(d=>d.addr===addr);
         if(entry){const b=makeBlock(entry,idx,row.length);if(b)rowEl.appendChild(b);}
@@ -457,7 +387,7 @@ function selectAddr(addr){
   document.getElementById('overlay').classList.add('show');
 }
 
-function openQuery(name){window.open(`${QUERY_URL}?name=${encodeURIComponent(name)}`, '_blank');}
+function openQuery(name){window.open(`${QUERY_URL}?name=${encodeURIComponent(name)}`,'_blank');}
 function closePanel(){document.getElementById('side-panel').classList.remove('open');document.getElementById('overlay').classList.remove('show');}
 
 function renderHist(hist){
