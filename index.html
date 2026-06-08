@@ -384,8 +384,7 @@ function selectAddr(addr){
   document.getElementById('visit-note').value='';
   renderHist(entry.hist);
   document.getElementById('side-panel').classList.add('open');
-  if(window.innerWidth <= 768) {
-  document.getElementById('overlay').classList.add('show');
+  if(window.innerWidth <= 768){document.getElementById('overlay').classList.add('show');}
 }
 
 function openQuery(name){window.open(`${QUERY_URL}?name=${encodeURIComponent(name)}`,'_blank');}
