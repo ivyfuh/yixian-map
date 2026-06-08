@@ -9,214 +9,180 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 <style>
 :root {
-  --bg: #0b1420; --bg2: #0d1a2d; --bg3: #111f35;
-  --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.12);
-  --text: #e2e8f0; --text2: #7a90a8; --text3: #3d5068;
-  --accent: #1d6fa4; --accent2: #22d3ee;
-  --green: #4ade80; --green-bg: rgba(74,222,128,0.1); --green-border: rgba(74,222,128,0.3);
-  --yellow: #facc15; --yellow-bg: rgba(250,204,21,0.1); --yellow-border: rgba(250,204,21,0.3);
-  --blue: #60a5fa; --blue-bg: rgba(96,165,250,0.1); --blue-border: rgba(96,165,250,0.3);
-  --red: #f87171; --red-bg: rgba(248,113,113,0.1); --red-border: rgba(248,113,113,0.3);
-  --font: 'Noto Sans TC', sans-serif;
+  --bg:#0b1420;--bg2:#0d1a2d;--bg3:#111f35;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);
+  --text:#e2e8f0;--text2:#7a90a8;--text3:#3d5068;
+  --accent:#1d6fa4;--accent2:#22d3ee;
+  --green:#4ade80;--green-bg:rgba(74,222,128,0.1);--green-border:rgba(74,222,128,0.3);
+  --yellow:#facc15;--yellow-bg:rgba(250,204,21,0.1);--yellow-border:rgba(250,204,21,0.3);
+  --blue:#60a5fa;--blue-bg:rgba(96,165,250,0.1);--blue-border:rgba(96,165,250,0.3);
+  --red:#f87171;--red-bg:rgba(248,113,113,0.1);--red-border:rgba(248,113,113,0.3);
+  --font:'Noto Sans TC',sans-serif;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { height: 100%; font-family: var(--font); background: var(--bg); color: var(--text); }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--text);}
 
-.topbar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 20px; height: 52px;
-  background: rgba(11,20,32,0.95); backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border); gap: 12px;
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:52px;background:rgba(11,20,32,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);gap:12px;}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.logo-icon{width:28px;height:28px;background:var(--accent);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;color:white;}
+.logo-text{font-size:13px;font-weight:500;}
+.logo-sub{font-size:10px;color:var(--text2);margin-top:1px;}
+.topbar-right{display:flex;align-items:center;gap:12px;}
+.topbar-stats{display:flex;gap:12px;align-items:center;}
+.stat-item{display:flex;align-items:center;gap:5px;font-size:12px;}
+.stat-dot{width:7px;height:7px;border-radius:50%;}
+.stat-val{font-weight:500;}
+.stat-lbl{color:var(--text2);}
+.prog-wrap{display:flex;align-items:center;gap:8px;padding-left:12px;border-left:1px solid var(--border);}
+.prog-track{width:72px;height:4px;background:var(--bg3);border-radius:2px;overflow:hidden;}
+.prog-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--green),var(--accent2));transition:width 0.5s;}
+.prog-pct{font-size:12px;font-weight:500;color:var(--accent2);min-width:30px;}
+.nav-tabs{display:flex;gap:4px;}
+.nav-tab{padding:5px 11px;font-size:12px;border-radius:20px;border:1px solid transparent;background:transparent;color:var(--text2);cursor:pointer;transition:all 0.15s;font-family:var(--font);white-space:nowrap;}
+.nav-tab:hover{color:var(--text);background:var(--bg3);}
+.nav-tab.active{background:var(--accent);color:white;}
+.nav-tab.qtab{color:var(--accent2);border-color:rgba(34,211,238,0.3);}
+.nav-tab.qtab:hover{background:rgba(34,211,238,0.1);}
+
+.app{display:flex;height:100vh;padding-top:52px;}
+.map-panel{flex:1;overflow-y:auto;padding:16px;}
+.side-panel{width:300px;background:var(--bg2);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;}
+.page{display:none;}
+.page.active{display:flex;flex-direction:column;flex:1;overflow:hidden;}
+#page-map{flex-direction:row;}
+#page-stats{padding:20px;overflow-y:auto;}
+#page-records{padding:20px;overflow-y:auto;}
+
+/* Legend */
+.legend{display:flex;gap:12px;flex-wrap:wrap;padding:8px 12px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;margin-bottom:16px;}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2);}
+.legend-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
+.legend-dot.signed{background:var(--green);}
+.legend-dot.partial{background:var(--yellow);}
+.legend-dot.willing{background:var(--blue);}
+.legend-dot.unsigned{background:var(--red);}
+
+/* Section */
+.section{margin-bottom:20px;}
+.sec-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.sec-title{font-size:11px;font-weight:500;color:var(--text2);letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap;}
+.sec-line{flex:1;height:1px;background:var(--border);}
+
+/* Building row - each building is one horizontal row */
+.bldg-row{display:flex;align-items:stretch;gap:4px;margin-bottom:6px;flex-wrap:wrap;}
+
+/* Address block */
+.ab{cursor:pointer;border-radius:7px;padding:9px 12px;border:1px solid transparent;transition:all 0.15s;position:relative;min-width:105px;}
+.ab:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.3);}
+.ab.active{box-shadow:0 0 0 2px var(--accent2)!important;}
+.ab.signed{background:var(--green-bg);border-color:var(--green-border);color:var(--green);}
+.ab.partial{background:var(--yellow-bg);border-color:var(--yellow-border);color:var(--yellow);}
+.ab.willing{background:var(--blue-bg);border-color:var(--blue-border);color:var(--blue);}
+.ab.unsigned{background:var(--red-bg);border-color:var(--red-border);color:var(--red);}
+.ab-floor{font-size:10px;opacity:0.65;margin-bottom:2px;}
+.ab-name{font-size:13px;font-weight:500;white-space:nowrap;margin-bottom:5px;}
+.ab-bar{height:3px;border-radius:2px;background:var(--border);overflow:hidden;}
+.ab-fill{height:100%;border-radius:2px;}
+.ab.signed .ab-fill{background:var(--green);}
+.ab.partial .ab-fill{background:var(--yellow);}
+.ab.willing .ab-fill{background:var(--blue);}
+.ab.unsigned .ab-fill{background:var(--red);}
+.ab-ratio{position:absolute;top:-7px;right:-5px;background:var(--bg);border:1px solid var(--border2);border-radius:9px;font-size:9px;padding:1px 5px;color:var(--text2);}
+
+/* Side panel */
+.panel-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:12px;color:var(--text3);}
+.panel-empty i{font-size:36px;}
+.panel-empty span{font-size:13px;}
+.panel-head{padding:14px 16px 10px;border-bottom:1px solid var(--border);}
+.panel-addr{font-size:14px;font-weight:500;margin-bottom:4px;}
+.panel-sub{font-size:12px;color:var(--text2);}
+.panel-body{flex:1;overflow-y:auto;padding:12px;}
+.owner-card{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:8px;}
+.owner-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;}
+.owner-name{font-size:13px;font-weight:500;}
+.badge{font-size:11px;padding:2px 8px;border-radius:10px;}
+.badge.signed{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border);}
+.badge.partial{background:var(--yellow-bg);color:var(--yellow);border:1px solid var(--yellow-border);}
+.badge.willing{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-border);}
+.badge.unsigned{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border);}
+.owner-info{font-size:12px;color:var(--text2);line-height:2;}
+.owner-info span{color:var(--text);}
+.q-btn{display:flex;align-items:center;gap:5px;width:100%;margin-top:8px;padding:6px 10px;background:rgba(29,111,164,0.15);border:1px solid rgba(29,111,164,0.3);border-radius:6px;font-size:12px;color:#60b4d8;cursor:pointer;font-family:var(--font);transition:all 0.15s;}
+.q-btn:hover{background:rgba(29,111,164,0.25);}
+.panel-foot{padding:12px;border-top:1px solid var(--border);overflow-y:auto;max-height:360px;}
+.foot-label{font-size:11px;color:var(--text2);margin-bottom:5px;font-weight:500;margin-top:8px;}
+.foot-label:first-child{margin-top:0;}
+select,textarea,input[type=text]{width:100%;font-size:12px;background:var(--bg);color:var(--text);border:1px solid var(--border2);border-radius:7px;padding:7px 10px;font-family:var(--font);outline:none;transition:border-color 0.15s;}
+select:focus,textarea:focus,input:focus{border-color:var(--accent);}
+textarea{height:60px;resize:none;}
+.btn-save{width:100%;padding:8px;font-size:12px;font-weight:500;background:var(--accent);color:white;border:none;border-radius:7px;cursor:pointer;margin-top:8px;font-family:var(--font);transition:background 0.15s;display:flex;align-items:center;justify-content:center;gap:5px;}
+.btn-save:hover{background:#1a5e8a;}
+.divider{height:1px;background:var(--border);margin:10px 0;}
+.hist-title{font-size:11px;color:var(--text2);font-weight:500;margin-bottom:6px;display:flex;align-items:center;gap:4px;}
+.hist-item{font-size:11px;padding:6px 0;border-top:1px solid var(--border);line-height:1.7;}
+.hist-time{font-size:10px;color:var(--text3);}
+.hist-agent{color:var(--accent2);margin-left:4px;}
+.hist-note{color:var(--text2);margin-top:2px;}
+
+.loading{display:flex;align-items:center;justify-content:center;padding:40px;gap:10px;color:var(--text2);font-size:13px;}
+.spinner{width:20px;height:20px;border:2px solid var(--border2);border-top-color:var(--accent2);border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* Stats */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:20px;}
+.stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;}
+.stat-card-label{font-size:11px;color:var(--text2);margin-bottom:8px;}
+.stat-card-value{font-size:28px;font-weight:300;}
+.stat-card-sub{font-size:11px;color:var(--text2);margin-top:4px;}
+.stat-card.green .stat-card-value{color:var(--green);}
+.stat-card.yellow .stat-card-value{color:var(--yellow);}
+.stat-card.blue .stat-card-value{color:var(--blue);}
+.stat-card.red .stat-card-value{color:var(--red);}
+.stat-card.cyan .stat-card-value{color:var(--accent2);}
+.progress-detail{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;}
+.pd-label{font-size:12px;color:var(--text2);margin-bottom:10px;}
+.pd-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;}
+.pd-name{width:80px;color:var(--text2);flex-shrink:0;}
+.pd-bar-wrap{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden;}
+.pd-bar{height:100%;border-radius:3px;}
+.pd-val{width:70px;text-align:right;color:var(--text);}
+
+/* Records */
+.records-table{width:100%;border-collapse:collapse;font-size:12px;}
+.records-table th{text-align:left;padding:8px 12px;color:var(--text2);font-weight:500;border-bottom:1px solid var(--border);font-size:11px;}
+.records-table td{padding:8px 12px;border-bottom:1px solid var(--border);color:var(--text);}
+.records-table tr:hover td{background:var(--bg2);}
+.page-title{font-size:16px;font-weight:500;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+
+/* Mobile */
+@media(max-width:768px){
+  .topbar-stats{display:none;}
+  .nav-tabs{display:none;}
+  .logo-sub{display:none;}
+  .side-panel{position:fixed;bottom:0;left:0;right:0;width:100%;height:80vh;border-left:none;border-top:1px solid var(--border);transform:translateY(100%);z-index:200;border-radius:16px 16px 0 0;transition:transform 0.3s ease;}
+  .side-panel.open{transform:translateY(0);}
+  .map-panel{padding:10px 8px;}
+  .ab{min-width:90px;}
+  .ab-name{font-size:12px;}
+  .mobile-nav{display:flex!important;}
+  .app{padding-bottom:56px;}
+  #page-map{flex-direction:column;}
+  .mobile-close-btn{display:flex!important;}
+  .legend{gap:8px;}
+  .legend-item{font-size:11px;}
 }
-.logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-.logo-icon { width: 28px; height: 28px; background: var(--accent); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: white; }
-.logo-text { font-size: 13px; font-weight: 500; }
-.logo-sub { font-size: 10px; color: var(--text2); margin-top: 1px; }
-.topbar-right { display: flex; align-items: center; gap: 12px; }
-.topbar-stats { display: flex; gap: 12px; align-items: center; }
-.stat-item { display: flex; align-items: center; gap: 5px; font-size: 12px; }
-.stat-dot { width: 7px; height: 7px; border-radius: 50%; }
-.stat-val { font-weight: 500; }
-.stat-lbl { color: var(--text2); }
-.prog-wrap { display: flex; align-items: center; gap: 8px; padding-left: 12px; border-left: 1px solid var(--border); }
-.prog-track { width: 72px; height: 4px; background: var(--bg3); border-radius: 2px; overflow: hidden; }
-.prog-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--green), var(--accent2)); transition: width 0.5s; }
-.prog-pct { font-size: 12px; font-weight: 500; color: var(--accent2); min-width: 30px; }
-.nav-tabs { display: flex; gap: 4px; }
-.nav-tab { padding: 5px 11px; font-size: 12px; border-radius: 20px; border: 1px solid transparent; background: transparent; color: var(--text2); cursor: pointer; transition: all 0.15s; font-family: var(--font); white-space: nowrap; }
-.nav-tab:hover { color: var(--text); background: var(--bg3); }
-.nav-tab.active { background: var(--accent); color: white; }
-.nav-tab.query-btn-top { color: var(--accent2); border-color: rgba(34,211,238,0.3); }
-.nav-tab.query-btn-top:hover { background: rgba(34,211,238,0.1); }
-
-.app { display: flex; height: 100vh; padding-top: 52px; }
-.map-panel { flex: 1; overflow-y: auto; padding: 16px; }
-.side-panel { width: 300px; background: var(--bg2); border-left: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
-
-.page { display: none; }
-.page.active { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
-#page-map { flex-direction: row; }
-#page-stats { padding: 20px; overflow-y: auto; }
-#page-records { padding: 20px; overflow-y: auto; }
-
-/* ── LEGEND ── */
-.legend {
-  display: flex; gap: 12px; flex-wrap: wrap;
-  padding: 8px 12px; background: var(--bg2);
-  border: 1px solid var(--border); border-radius: 8px;
-  margin-bottom: 14px;
-}
-.legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text2); }
-.legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
-.legend-dot.signed { background: var(--green); }
-.legend-dot.partial { background: var(--yellow); }
-.legend-dot.willing { background: var(--blue); }
-.legend-dot.unsigned { background: var(--red); }
-
-/* ── SECTION ── */
-.section { margin-bottom: 20px; }
-.sec-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-.sec-title { font-size: 11px; font-weight: 500; color: var(--text2); letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
-.sec-line { flex: 1; height: 1px; background: var(--border); }
-
-/* ── BUILDING ROW ── */
-.bldg-row { display: flex; gap: 4px; margin-bottom: 8px; align-items: flex-start; flex-wrap: wrap; }
-.bldg-row-inner { display: flex; gap: 4px; flex-wrap: nowrap; }
-
-/* ── ADDRESS BLOCK ── */
-.ab {
-  cursor: pointer; border-radius: 7px; padding: 9px 12px;
-  border: 1px solid transparent; transition: all 0.15s;
-  position: relative; min-width: 100px;
-}
-.ab:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-.ab.active { box-shadow: 0 0 0 2px var(--accent2) !important; }
-.ab.signed { background: var(--green-bg); border-color: var(--green-border); color: var(--green); }
-.ab.partial { background: var(--yellow-bg); border-color: var(--yellow-border); color: var(--yellow); }
-.ab.willing { background: var(--blue-bg); border-color: var(--blue-border); color: var(--blue); }
-.ab.unsigned { background: var(--red-bg); border-color: var(--red-border); color: var(--red); }
-.ab-floor { font-size: 10px; opacity: 0.65; margin-bottom: 3px; }
-.ab-name { font-size: 13px; font-weight: 500; white-space: nowrap; margin-bottom: 5px; }
-.ab-bar { height: 3px; border-radius: 2px; background: var(--border); overflow: hidden; }
-.ab-fill { height: 100%; border-radius: 2px; }
-.ab.signed .ab-fill { background: var(--green); }
-.ab.partial .ab-fill { background: var(--yellow); }
-.ab.willing .ab-fill { background: var(--blue); }
-.ab.unsigned .ab-fill { background: var(--red); }
-.ab-ratio { position: absolute; top: -7px; right: -5px; background: var(--bg); border: 1px solid var(--border2); border-radius: 9px; font-size: 9px; padding: 1px 5px; color: var(--text2); }
-
-/* ── SIDE PANEL ── */
-.panel-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; gap: 12px; color: var(--text3); }
-.panel-empty i { font-size: 36px; }
-.panel-empty span { font-size: 13px; }
-.panel-head { padding: 14px 16px 10px; border-bottom: 1px solid var(--border); }
-.panel-addr { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
-.panel-sub { font-size: 12px; color: var(--text2); }
-.panel-body { flex: 1; overflow-y: auto; padding: 12px; }
-.owner-card { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; }
-.owner-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 7px; }
-.owner-name { font-size: 13px; font-weight: 500; }
-.badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; }
-.badge.signed { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
-.badge.partial { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
-.badge.willing { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
-.badge.unsigned { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
-.owner-info { font-size: 12px; color: var(--text2); line-height: 2; }
-.owner-info span { color: var(--text); }
-.q-btn { display: flex; align-items: center; gap: 5px; width: 100%; margin-top: 8px; padding: 6px 10px; background: rgba(29,111,164,0.15); border: 1px solid rgba(29,111,164,0.3); border-radius: 6px; font-size: 12px; color: #60b4d8; cursor: pointer; font-family: var(--font); transition: all 0.15s; }
-.q-btn:hover { background: rgba(29,111,164,0.25); }
-.panel-foot { padding: 12px; border-top: 1px solid var(--border); overflow-y: auto; max-height: 340px; }
-.foot-label { font-size: 11px; color: var(--text2); margin-bottom: 5px; font-weight: 500; margin-top: 8px; }
-.foot-label:first-child { margin-top: 0; }
-select, textarea, input[type=text] { width: 100%; font-size: 12px; background: var(--bg); color: var(--text); border: 1px solid var(--border2); border-radius: 7px; padding: 7px 10px; font-family: var(--font); outline: none; transition: border-color 0.15s; }
-select:focus, textarea:focus, input:focus { border-color: var(--accent); }
-textarea { height: 60px; resize: none; }
-.btn-save { width: 100%; padding: 8px; font-size: 12px; font-weight: 500; background: var(--accent); color: white; border: none; border-radius: 7px; cursor: pointer; margin-top: 8px; font-family: var(--font); transition: background 0.15s; display: flex; align-items: center; justify-content: center; gap: 5px; }
-.btn-save:hover { background: #1a5e8a; }
-.divider { height: 1px; background: var(--border); margin: 10px 0; }
-.hist-title { font-size: 11px; color: var(--text2); font-weight: 500; margin-bottom: 6px; display: flex; align-items: center; gap: 4px; }
-.hist-item { font-size: 11px; padding: 6px 0; border-top: 1px solid var(--border); line-height: 1.7; }
-.hist-time { font-size: 10px; color: var(--text3); }
-.hist-agent { color: var(--accent2); margin-left: 4px; }
-.hist-note { color: var(--text2); margin-top: 2px; }
-
-.loading { display: flex; align-items: center; justify-content: center; padding: 40px; gap: 10px; color: var(--text2); font-size: 13px; }
-.spinner { width: 20px; height: 20px; border: 2px solid var(--border2); border-top-color: var(--accent2); border-radius: 50%; animation: spin 0.8s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* ── STATS ── */
-.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 20px; }
-.stat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
-.stat-card-label { font-size: 11px; color: var(--text2); margin-bottom: 8px; }
-.stat-card-value { font-size: 28px; font-weight: 300; }
-.stat-card-sub { font-size: 11px; color: var(--text2); margin-top: 4px; }
-.stat-card.green .stat-card-value { color: var(--green); }
-.stat-card.yellow .stat-card-value { color: var(--yellow); }
-.stat-card.blue .stat-card-value { color: var(--blue); }
-.stat-card.red .stat-card-value { color: var(--red); }
-.stat-card.cyan .stat-card-value { color: var(--accent2); }
-.progress-detail { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 12px; }
-.pd-label { font-size: 12px; color: var(--text2); margin-bottom: 10px; }
-.pd-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 12px; }
-.pd-name { width: 80px; color: var(--text2); flex-shrink: 0; }
-.pd-bar-wrap { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
-.pd-bar { height: 100%; border-radius: 3px; }
-.pd-val { width: 70px; text-align: right; color: var(--text); }
-
-/* ── RECORDS ── */
-.records-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-.records-table th { text-align: left; padding: 8px 12px; color: var(--text2); font-weight: 500; border-bottom: 1px solid var(--border); font-size: 11px; }
-.records-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); color: var(--text); }
-.records-table tr:hover td { background: var(--bg2); }
-.page-title { font-size: 16px; font-weight: 500; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-
-/* ── MOBILE ── */
-@media (max-width: 768px) {
-  .topbar-stats { display: none; }
-  .nav-tabs { display: none; }
-  .logo-sub { display: none; }
-  .side-panel {
-    position: fixed; bottom: 0; left: 0; right: 0;
-    width: 100%; height: 80vh; border-left: none;
-    border-top: 1px solid var(--border);
-    transform: translateY(100%); z-index: 200;
-    border-radius: 16px 16px 0 0; transition: transform 0.3s ease;
-  }
-  .side-panel.open { transform: translateY(0); }
-  .map-panel { padding: 10px 8px; }
-  .ab { min-width: 85px; }
-  .ab-name { font-size: 12px; }
-  .mobile-nav { display: flex !important; }
-  .app { padding-bottom: 56px; }
-  #page-map { flex-direction: column; }
-  .mobile-close-btn { display: flex !important; }
-  .legend { gap: 8px; }
-  .legend-item { font-size: 11px; }
-}
-
-.mobile-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg2); border-top: 1px solid var(--border); padding: 8px 0 env(safe-area-inset-bottom,0px); z-index: 60; }
-.mobile-nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; color: var(--text2); font-size: 10px; padding: 4px 0; }
-.mobile-nav-item i { font-size: 20px; }
-.mobile-nav-item.active { color: var(--accent2); }
-.mobile-nav-item.query-item { color: var(--blue); }
-
-/* Mobile close button */
-.mobile-close-btn {
-  display: none;
-  align-items: center; justify-content: space-between;
-  padding: 10px 16px 6px;
-  border-bottom: 1px solid var(--border);
-  flex-shrink: 0;
-}
-.mobile-close-bar-wrap { display: flex; justify-content: center; flex: 1; }
-.mobile-close-bar { width: 36px; height: 4px; background: var(--border2); border-radius: 2px; }
-.btn-close-panel { display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--text2); background: none; border: none; cursor: pointer; font-family: var(--font); padding: 4px 8px; border-radius: 6px; }
-.btn-close-panel:hover { background: var(--bg3); color: var(--text); }
-
-/* Overlay */
-.overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 150; }
-.overlay.show { display: block; }
+.mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:8px 0;z-index:60;}
+.mobile-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:var(--text2);font-size:10px;padding:4px 0;}
+.mobile-nav-item i{font-size:20px;}
+.mobile-nav-item.active{color:var(--accent2);}
+.mobile-nav-item.qitem{color:var(--blue);}
+.mobile-close-btn{display:none;align-items:center;justify-content:space-between;padding:10px 16px 6px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.mobile-close-bar-wrap{display:flex;justify-content:center;flex:1;}
+.mobile-close-bar{width:36px;height:4px;background:var(--border2);border-radius:2px;}
+.btn-back{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--text2);background:none;border:none;cursor:pointer;font-family:var(--font);padding:4px 8px;border-radius:6px;}
+.btn-back:hover{background:var(--bg3);color:var(--text);}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:150;}
+.overlay.show{display:block;}
 </style>
 </head>
 <body>
@@ -244,7 +210,7 @@ textarea { height: 60px; resize: none; }
       <button class="nav-tab active" onclick="showPage('map')"><i class="ti ti-map-2"></i> 地圖</button>
       <button class="nav-tab" onclick="showPage('stats')"><i class="ti ti-chart-pie"></i> 統計</button>
       <button class="nav-tab" onclick="showPage('records')"><i class="ti ti-notes"></i> 紀錄</button>
-      <button class="nav-tab query-btn-top" onclick="window.open('https://ivyfuh.github.io/hanhuang-query/','_blank')"><i class="ti ti-calculator"></i> 權利試算</button>
+      <button class="nav-tab qtab" onclick="window.open('https://ivyfuh.github.io/hanhuang-query/','_blank')"><i class="ti ti-calculator"></i> 權利試算</button>
     </div>
   </div>
 </div>
@@ -258,7 +224,7 @@ textarea { height: 60px; resize: none; }
     </div>
     <div class="side-panel" id="side-panel">
       <div class="mobile-close-btn">
-        <button class="btn-close-panel" onclick="closePanel()"><i class="ti ti-arrow-left"></i> 返回地圖</button>
+        <button class="btn-back" onclick="closePanel()"><i class="ti ti-arrow-left"></i> 返回地圖</button>
         <div class="mobile-close-bar-wrap"><div class="mobile-close-bar"></div></div>
         <div style="width:80px"></div>
       </div>
@@ -307,420 +273,285 @@ textarea { height: 60px; resize: none; }
   <div class="mobile-nav-item active" onclick="showPage('map')"><i class="ti ti-map-2"></i><span>地圖</span></div>
   <div class="mobile-nav-item" onclick="showPage('stats')"><i class="ti ti-chart-pie"></i><span>統計</span></div>
   <div class="mobile-nav-item" onclick="showPage('records')"><i class="ti ti-notes"></i><span>紀錄</span></div>
-  <div class="mobile-nav-item query-item" onclick="window.open('https://ivyfuh.github.io/hanhuang-query/','_blank')"><i class="ti ti-calculator"></i><span>權利試算</span></div>
+  <div class="mobile-nav-item qitem" onclick="window.open('https://ivyfuh.github.io/hanhuang-query/','_blank')"><i class="ti ti-calculator"></i><span>權利試算</span></div>
 </div>
 
 <script>
-const API = 'https://script.google.com/macros/s/AKfycbzAuPGbtVF0e-jUvycfR4nT2y8x1DDq2pqUz5aiB7Sesbcz2az8CuM0XHwMRGix54yV/exec';
-const QUERY_URL = 'https://ivyfuh.github.io/hanhuang-query/';
-const SHEET_ID = '15LypBkwdkRGdFeR_H1N6gY04detwRYHUB9peSNG_3y8';
+const API='https://script.google.com/macros/s/AKfycbzAuPGbtVF0e-jUvycfR4nT2y8x1DDq2pqUz5aiB7Sesbcz2az8CuM0XHwMRGix54yV/exec';
+const QUERY_URL='https://ivyfuh.github.io/hanhuang-query/';
+const SHEET_ID='15LypBkwdkRGdFeR_H1N6gY04detwRYHUB9peSNG_3y8';
+let DB=[],selectedAddr=null;
 
-let DB = [];
-let selectedAddr = null;
-
-// 版面配置：每個 group 獨立一排，floors 由左(1F)到右(最高樓)
-const LAYOUT = [
-  {
-    section: '光復南路 445 號',
-    groups: [
-      { label: '445號', floors: ['光復南路445號','光復南路445號2樓','光復南路445號3樓之1','光復南路445號4樓'] },
-    ]
-  },
-  {
-    section: '光復南路 445 之字號',
-    groups: [
-      { label: '445之8號', floors: ['光復南路445之8號'] },
-      { label: '445之5號', floors: ['光復南路445之5號'] },
-      { label: '445之4號', floors: ['光復南路445之4號'] },
-      { label: '445之2號', floors: ['光復南路445之2號'] },
-      { label: '445之1號', floors: ['光復南路445之1號'] },
-    ]
-  },
-  {
-    section: '光復南路 443 巷 2 號',
-    groups: [
-      { label: '443巷2號', floors: ['光復南路443巷2號','光復南路443巷2之1號','光復南路443巷2號3樓','光復南路443巷2號4樓'] },
-    ]
-  },
-  {
-    section: '光復南路 443 巷 4 號',
-    groups: [
-      { label: '443巷4號', floors: ['光復南路443巷4號','光復南路443巷4號2樓','光復南路443巷4之2號','光復南路443巷4之3號'] },
-    ]
-  },
-  {
-    section: '光復南路 443 巷 6 號',
-    groups: [
-      { label: '443巷6號', floors: ['光復南路443巷6號','光復南路443巷6之1號','光復南路443巷6號3樓','光復南路443巷6號4樓'] },
-    ]
-  },
-  {
-    section: '光復南路 443 巷 8 號',
-    groups: [
-      { label: '443巷8號', floors: ['光復南路443巷8號','光復南路443巷8號2樓','光復南路443巷8號3樓'] },
-      { label: '443巷8之3號', floors: ['光復南路443巷8之3號'] },
-    ]
-  },
-  {
-    section: '光復南路 447 號',
-    groups: [
-      { label: '447號', floors: ['光復南路447號','光復南路447號2樓','光復南路447號3樓','光復南路447號4樓'] },
-      { label: '447之1號', floors: ['光復南路447之1號'] },
-    ]
-  },
-  {
-    section: '光復南路 447 之字號（4～11）',
-    groups: [
-      { label: '447之4號', floors: ['光復南路447之4號'] },
-      { label: '447之5號', floors: ['光復南路447之5號'] },
-      { label: '447之6號', floors: ['光復南路447之6號'] },
-      { label: '447之7號', floors: ['光復南路447之7號'] },
-      { label: '447之8號', floors: ['光復南路447之8號'] },
-      { label: '447之9號', floors: ['光復南路447之9號'] },
-      { label: '447之10號', floors: ['光復南路447之10號'] },
-      { label: '447之11號', floors: ['光復南路447之11號'] },
-    ]
-  },
-  {
-    section: '光復南路 447 之字號（12～19）',
-    groups: [
-      { label: '447之12號', floors: ['光復南路447之12號'] },
-      { label: '447之13號', floors: ['光復南路447之13號'] },
-      { label: '447之14號', floors: ['光復南路447之14號'] },
-      { label: '447之15號', floors: ['光復南路447之15號'] },
-      { label: '447之16號', floors: ['光復南路447之16號'] },
-      { label: '447之17號', floors: ['光復南路447之17號'] },
-      { label: '447之18號', floors: ['光復南路447之18號'] },
-      { label: '447之19號', floors: ['光復南路447之19號'] },
-    ]
-  },
-  {
-    section: '光復南路 447 之字號（20～27）',
-    groups: [
-      { label: '447之20號', floors: ['光復南路447之20號'] },
-      { label: '447之21號', floors: ['光復南路447之21號'] },
-      { label: '447之22號', floors: ['光復南路447之22號'] },
-      { label: '447之23號', floors: ['光復南路447之23號'] },
-      { label: '447之24號', floors: ['光復南路447之24號'] },
-      { label: '447之25號', floors: ['光復南路447之25號'] },
-      { label: '447之26號', floors: ['光復南路447之26號'] },
-      { label: '447之27號', floors: ['光復南路447之27號'] },
-    ]
-  },
-  {
-    section: '光復南路 447 之字號（28～35）',
-    groups: [
-      { label: '447之28號', floors: ['光復南路447之28號'] },
-      { label: '447之29號', floors: ['光復南路447之29號'] },
-      { label: '447之30號', floors: ['光復南路447之30號'] },
-      { label: '447之31號', floors: ['光復南路447之31號'] },
-      { label: '447之32號', floors: ['光復南路447之32號'] },
-      { label: '447之33號', floors: ['光復南路447之33號'] },
-      { label: '447之34號', floors: ['光復南路447之34號'] },
-      { label: '447之35號', floors: ['光復南路447之35號'] },
-    ]
-  },
-  {
-    section: '純土地持有',
-    groups: [
-      { label: '鄭素卿', floors: ['鄭素卿'] },
-      { label: '國產署', floors: ['中華民國(國產署)'] },
-    ]
-  }
+// 照立體圖排列：每棟一排，1樓在左
+const LAYOUT=[
+  { section:'光復南路 443 巷', rows:[
+    ['光復南路443巷2號','光復南路443巷2之1號','光復南路443巷2號3樓','光復南路443巷2號4樓'],
+    ['光復南路443巷4號','光復南路443巷4號2樓','光復南路443巷4之2號','光復南路443巷4之3號'],
+    ['光復南路443巷6號','光復南路443巷6之1號','光復南路443巷6號3樓','光復南路443巷6號4樓'],
+    ['光復南路443巷8號','光復南路443巷8號2樓','光復南路443巷8號3樓','光復南路443巷8之3號'],
+  ]},
+  { section:'光復南路 445 號', rows:[
+    ['光復南路445號','光復南路445號2樓','光復南路445號3樓之1','光復南路445號4樓'],
+    ['光復南路445之8號'],
+    ['光復南路445之5號'],
+    ['光復南路445之4號'],
+    ['光復南路445之1號'],
+    ['光復南路445之2號'],
+  ]},
+  { section:'光復南路 447 號', rows:[
+    ['光復南路447號','光復南路447號2樓','光復南路447號3樓','光復南路447號4樓'],
+    ['光復南路447之1號'],
+    ['光復南路447之4號'],
+    ['光復南路447之5號'],
+    ['光復南路447之6號'],
+    ['光復南路447之7號'],
+    ['光復南路447之8號'],
+    ['光復南路447之9號'],
+    ['光復南路447之10號'],
+    ['光復南路447之11號'],
+    ['光復南路447之12號'],
+    ['光復南路447之13號'],
+    ['光復南路447之14號'],
+    ['光復南路447之15號'],
+    ['光復南路447之16號'],
+    ['光復南路447之17號'],
+    ['光復南路447之18號'],
+    ['光復南路447之19號'],
+    ['光復南路447之20號'],
+    ['光復南路447之21號'],
+    ['光復南路447之22號'],
+    ['光復南路447之23號'],
+    ['光復南路447之24號'],
+    ['光復南路447之25號'],
+    ['光復南路447之26號'],
+    ['光復南路447之27號'],
+    ['光復南路447之28號'],
+    ['光復南路447之29號'],
+    ['光復南路447之30號'],
+    ['光復南路447之31號'],
+    ['光復南路447之32號'],
+    ['光復南路447之33號'],
+    ['光復南路447之34號'],
+    ['光復南路447之35號'],
+  ]},
+  { section:'純土地持有', rows:[
+    ['鄭素卿'],
+    ['中華民國(國產署)'],
+  ]},
 ];
 
-async function loadData() {
-  try {
-    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=資料庫`;
-    const res = await fetch(url);
-    const text = await res.text();
-    const json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/)[1]);
-    const rows = json.table.rows;
-    return rows.map(r => r.c.map(c => c ? (c.v !== null ? String(c.v) : '') : '')).filter((r,i) => i > 0 && r[0]);
-  } catch(e) { console.error(e); return []; }
+async function loadData(){
+  try{
+    const url=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=資料庫`;
+    const res=await fetch(url);
+    const text=await res.text();
+    const json=JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/)[1]);
+    return json.table.rows.map(r=>r.c.map(c=>c?(c.v!==null?String(c.v):''):'')).filter((r,i)=>i>0&&r[0]);
+  }catch(e){return[];}
 }
 
-async function loadVisits() {
-  try {
-    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=拜訪紀錄`;
-    const res = await fetch(url);
-    const text = await res.text();
-    const json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/)[1]);
-    const rows = json.table.rows;
-    return rows.map(r => r.c.map(c => c ? (c.v || '') : '')).filter((r,i) => i > 0 && r[0]);
-  } catch(e) { return []; }
+async function loadVisits(){
+  try{
+    const url=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=拜訪紀錄`;
+    const res=await fetch(url);
+    const text=await res.text();
+    const json=JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/)[1]);
+    return json.table.rows.map(r=>r.c.map(c=>c?(c.v||''):'')).filter((r,i)=>i>0&&r[0]);
+  }catch(e){return[];}
 }
 
-function buildDB(rows) {
-  const addrMap = {};
-  rows.forEach(r => {
-    const addr = r[0].trim();
-    const name = r[1].trim();
-    const status = r[2].trim();
-    const lot = r[3].trim();
-    const land = parseFloat(r[4].replace(/[^\d.]/g,'')) || 0;
-    const bld = parseFloat(r[5].replace(/[^\d.]/g,'')) || 0;
-    const totalFloor = r[6];
-    const floor = r[7];
-    if (!addr || !name) return;
-    if (!addrMap[addr]) addrMap[addr] = { addr, owners: [], hist: [] };
-    const existing = addrMap[addr].owners.find(o => o.name === name);
-    if (!existing) {
-      addrMap[addr].owners.push({ name, status, lot, land, bld, totalFloor, floor });
-    } else {
-      existing.land += land;
-      existing.bld += bld;
-    }
+function buildDB(rows){
+  const map={};
+  rows.forEach(r=>{
+    const addr=r[0].trim(),name=r[1].trim(),status=r[2].trim();
+    const lot=r[3].trim(),land=parseFloat(r[4].replace(/[^\d.]/g,''))||0;
+    const bld=parseFloat(r[5].replace(/[^\d.]/g,''))||0,totalFloor=r[6],floor=r[7];
+    if(!addr||!name)return;
+    if(!map[addr])map[addr]={addr,owners:[],hist:[]};
+    const ex=map[addr].owners.find(o=>o.name===name);
+    if(!ex)map[addr].owners.push({name,status,lot,land,bld,totalFloor,floor});
+    else{ex.land+=land;ex.bld+=bld;}
   });
-  return Object.values(addrMap);
+  return Object.values(map);
 }
 
-function getGroupStatus(owners) {
-  const t = owners.length;
-  const signed = owners.filter(o => o.status === '已簽約').length;
-  const willing = owners.filter(o => o.status === '有意願').length;
-  if (signed === t) return 'signed';
-  if (willing > 0) return 'willing';
-  if (signed > 0) return 'partial';
-  return 'unsigned';
+function getStatus(owners){
+  const t=owners.length,s=owners.filter(o=>o.status==='已簽約').length,w=owners.filter(o=>o.status==='有意願').length;
+  if(s===t)return'signed';
+  if(w>0)return'willing';
+  if(s>0)return'partial';
+  return'unsigned';
 }
+function getPct(owners){return Math.round(owners.filter(o=>o.status==='已簽約').length/owners.length*100);}
+function statusClass(s){return s==='已簽約'?'signed':s==='有意願'?'willing':s==='部分簽約'?'partial':'unsigned';}
+function shortLabel(addr){return addr.replace('光復南路','');}
 
-function getPct(owners) {
-  return Math.round(owners.filter(o => o.status === '已簽約').length / owners.length * 100);
-}
-
-function statusClass(s) {
-  return s === '已簽約' ? 'signed' : s === '有意願' ? 'willing' : s === '部分簽約' ? 'partial' : 'unsigned';
-}
-
-function shortLabel(addr) {
-  return addr.replace('光復南路','').replace('臺北市信義區','');
-}
-
-function makeBlock(entry, floorIdx, totalFloors) {
-  if (!entry) return null;
-  const st = getGroupStatus(entry.owners);
-  const pct = getPct(entry.owners);
-  const t = entry.owners.length;
-  const s = entry.owners.filter(o => o.status === '已簽約').length;
-  const div = document.createElement('div');
-  div.className = `ab ${st}`;
-  div.dataset.addr = entry.addr;
-  const showFloor = totalFloors > 1;
-  div.innerHTML = `${t > 1 ? `<div class="ab-ratio">${s}/${t}</div>` : ''}
-    ${showFloor ? `<div class="ab-floor">${floorIdx+1}F</div>` : ''}
+function makeBlock(entry,floorIdx,totalInRow){
+  if(!entry)return null;
+  const st=getStatus(entry.owners),pct=getPct(entry.owners);
+  const t=entry.owners.length,s=entry.owners.filter(o=>o.status==='已簽約').length;
+  const div=document.createElement('div');
+  div.className=`ab ${st}`;div.dataset.addr=entry.addr;
+  div.innerHTML=`${t>1?`<div class="ab-ratio">${s}/${t}</div>`:''}
+    ${totalInRow>1?`<div class="ab-floor">${floorIdx+1}F</div>`:''}
     <div class="ab-name">${shortLabel(entry.addr)}</div>
     <div class="ab-bar"><div class="ab-fill" style="width:${pct}%"></div></div>`;
-  div.addEventListener('click', () => selectAddr(entry.addr));
+  div.addEventListener('click',()=>selectAddr(entry.addr));
   return div;
 }
 
-function renderMap() {
-  const panel = document.getElementById('map-panel');
-  panel.innerHTML = '';
-
+function renderMap(){
+  const panel=document.getElementById('map-panel');
+  panel.innerHTML='';
   // Legend
-  const legend = document.createElement('div');
-  legend.className = 'legend';
-  legend.innerHTML = `
+  panel.innerHTML=`<div class="legend">
     <div class="legend-item"><div class="legend-dot signed"></div><span>全部已簽約</span></div>
     <div class="legend-item"><div class="legend-dot partial"></div><span>部分已簽約</span></div>
     <div class="legend-item"><div class="legend-dot willing"></div><span>有意願</span></div>
     <div class="legend-item"><div class="legend-dot unsigned"></div><span>未簽約</span></div>
-  `;
-  panel.appendChild(legend);
+  </div>`;
 
-  LAYOUT.forEach(sec => {
-    const secEl = document.createElement('div');
-    secEl.className = 'section';
-    secEl.innerHTML = `<div class="sec-header"><div class="sec-title">${sec.section}</div><div class="sec-line"></div></div>`;
-
-    sec.groups.forEach(grp => {
-      const rowEl = document.createElement('div');
-      rowEl.className = 'bldg-row';
-      const innerEl = document.createElement('div');
-      innerEl.className = 'bldg-row-inner';
-      grp.floors.forEach((addr, idx) => {
-        const entry = DB.find(d => d.addr === addr);
-        if (entry) {
-          const block = makeBlock(entry, idx, grp.floors.length);
-          if (block) innerEl.appendChild(block);
-        }
+  LAYOUT.forEach(sec=>{
+    const secEl=document.createElement('div');
+    secEl.className='section';
+    secEl.innerHTML=`<div class="sec-header"><div class="sec-title">${sec.section}</div><div class="sec-line"></div></div>`;
+    sec.rows.forEach(row=>{
+      const rowEl=document.createElement('div');
+      rowEl.className='bldg-row';
+      row.forEach((addr,idx)=>{
+        const entry=DB.find(d=>d.addr===addr);
+        if(entry){const b=makeBlock(entry,idx,row.length);if(b)rowEl.appendChild(b);}
       });
-      rowEl.appendChild(innerEl);
       secEl.appendChild(rowEl);
     });
-
     panel.appendChild(secEl);
   });
 }
 
-function selectAddr(addr) {
-  selectedAddr = addr;
-  document.querySelectorAll('.ab').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll(`[data-addr="${addr}"]`).forEach(b => b.classList.add('active'));
-  const entry = DB.find(d => d.addr === addr);
-  if (!entry) return;
-
-  document.getElementById('panel-empty').style.display = 'none';
-  const pc = document.getElementById('panel-content');
-  pc.style.display = 'flex'; pc.style.flexDirection = 'column'; pc.style.height = '100%';
-
-  const signed = entry.owners.filter(o => o.status === '已簽約').length;
-  document.getElementById('p-addr').textContent = entry.addr;
-  document.getElementById('p-sub').textContent = `共 ${entry.owners.length} 位所有權人｜已簽約 ${signed} 位`;
-
-  document.getElementById('p-body').innerHTML = entry.owners.map(o => `
+function selectAddr(addr){
+  selectedAddr=addr;
+  document.querySelectorAll('.ab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll(`[data-addr="${addr}"]`).forEach(b=>b.classList.add('active'));
+  const entry=DB.find(d=>d.addr===addr);if(!entry)return;
+  document.getElementById('panel-empty').style.display='none';
+  const pc=document.getElementById('panel-content');
+  pc.style.display='flex';pc.style.flexDirection='column';pc.style.height='100%';
+  const signed=entry.owners.filter(o=>o.status==='已簽約').length;
+  document.getElementById('p-addr').textContent=entry.addr;
+  document.getElementById('p-sub').textContent=`共 ${entry.owners.length} 位所有權人｜已簽約 ${signed} 位`;
+  document.getElementById('p-body').innerHTML=entry.owners.map(o=>`
     <div class="owner-card">
-      <div class="owner-top">
-        <span class="owner-name">${o.name}</span>
-        <span class="badge ${statusClass(o.status)}">${o.status}</span>
-      </div>
+      <div class="owner-top"><span class="owner-name">${o.name}</span><span class="badge ${statusClass(o.status)}">${o.status}</span></div>
       <div class="owner-info">
-        ${o.lot ? `地號：<span>${o.lot}</span>　` : ''}
-        ${o.totalFloor ? `樓層：<span>${o.floor}/${o.totalFloor}F</span>` : ''}<br>
-        ${o.land ? `土地：<span>${o.land.toFixed(2)} 坪</span>　` : ''}
-        ${o.bld ? `建物：<span>${o.bld.toFixed(2)} 坪</span>` : ''}
+        ${o.lot?`地號：<span>${o.lot}</span>　`:''}
+        ${o.totalFloor?`樓層：<span>${o.floor}/${o.totalFloor}F</span>`:''}<br>
+        ${o.land?`土地：<span>${o.land.toFixed(2)} 坪</span>　`:''}
+        ${o.bld?`建物：<span>${o.bld.toFixed(2)} 坪</span>`:''}
       </div>
-      <button class="q-btn" onclick="openQuery('${o.name}')">
-        <i class="ti ti-calculator" style="font-size:13px"></i>查詢權利價值試算
-      </button>
-    </div>
-  `).join('');
-
-  document.getElementById('status-sel').value = entry.owners[0]?.status || '未簽約';
-  document.getElementById('visit-note').value = '';
+      <button class="q-btn" onclick="openQuery('${o.name}')"><i class="ti ti-calculator" style="font-size:13px"></i>查詢權利價值試算</button>
+    </div>`).join('');
+  document.getElementById('status-sel').value=entry.owners[0]?.status||'未簽約';
+  document.getElementById('visit-note').value='';
   renderHist(entry.hist);
-
-  // Open panel + overlay
   document.getElementById('side-panel').classList.add('open');
   document.getElementById('overlay').classList.add('show');
 }
 
-function openQuery(name) { window.open(`${QUERY_URL}?name=${encodeURIComponent(name)}`, '_blank'); }
+function openQuery(name){window.open(`${QUERY_URL}?name=${encodeURIComponent(name)}`, '_blank');}
+function closePanel(){document.getElementById('side-panel').classList.remove('open');document.getElementById('overlay').classList.remove('show');}
 
-function closePanel() {
-  document.getElementById('side-panel').classList.remove('open');
-  document.getElementById('overlay').classList.remove('show');
+function renderHist(hist){
+  const w=document.getElementById('hist-wrap');
+  if(!hist||!hist.length){w.innerHTML='';return;}
+  w.innerHTML=`<div class="hist-title"><i class="ti ti-clock-history"></i>最近拜訪紀錄</div>`+
+    hist.slice().reverse().slice(0,5).map(h=>`<div class="hist-item">
+      <div class="hist-time">${h[0]||''}<span class="hist-agent">${h[2]||''}</span></div>
+      <div class="hist-note">${h[4]||''}</div></div>`).join('');
 }
 
-function renderHist(hist) {
-  const w = document.getElementById('hist-wrap');
-  if (!hist || !hist.length) { w.innerHTML = ''; return; }
-  w.innerHTML = `<div class="hist-title"><i class="ti ti-clock-history"></i>最近拜訪紀錄</div>` +
-    hist.slice().reverse().slice(0,5).map(h => `
-      <div class="hist-item">
-        <div class="hist-time">${h[0]||''}<span class="hist-agent">${h[2]||''}</span></div>
-        <div class="hist-note">${h[4]||''}</div>
-      </div>`).join('');
+async function saveRecord(){
+  if(!selectedAddr)return;
+  const status=document.getElementById('status-sel').value;
+  const agent=document.getElementById('agent-name').value.trim();
+  const note=document.getElementById('visit-note').value.trim();
+  if(!note){alert('請填寫拜訪紀錄');return;}
+  const btn=document.querySelector('.btn-save');
+  btn.innerHTML='<div class="spinner" style="width:14px;height:14px;border-width:2px;margin-right:6px"></div>儲存中...';
+  btn.disabled=true;
+  try{
+    await fetch(API,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({action:'addVisit',address:selectedAddr,agent,status,note})});
+    const entry=DB.find(d=>d.addr===selectedAddr);
+    if(entry)entry.owners.forEach(o=>o.status=status);
+    renderMap();updateStats();selectAddr(selectedAddr);
+    document.getElementById('visit-note').value='';
+    btn.innerHTML='<i class="ti ti-check"></i>已儲存！';
+    setTimeout(()=>{btn.innerHTML='<i class="ti ti-device-floppy"></i>儲存紀錄';btn.disabled=false;},2000);
+  }catch(e){btn.innerHTML='<i class="ti ti-device-floppy"></i>儲存紀錄';btn.disabled=false;alert('儲存失敗');}
 }
 
-async function saveRecord() {
-  if (!selectedAddr) return;
-  const status = document.getElementById('status-sel').value;
-  const agent = document.getElementById('agent-name').value.trim();
-  const note = document.getElementById('visit-note').value.trim();
-  if (!note) { alert('請填寫拜訪紀錄'); return; }
-  const btn = document.querySelector('.btn-save');
-  btn.innerHTML = '<div class="spinner" style="width:14px;height:14px;border-width:2px;margin-right:6px"></div>儲存中...';
-  btn.disabled = true;
-  try {
-    await fetch(API, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ action:'addVisit', address:selectedAddr, agent, status, note }) });
-    const entry = DB.find(d => d.addr === selectedAddr);
-    if (entry) entry.owners.forEach(o => o.status = status);
-    renderMap(); updateStats(); selectAddr(selectedAddr);
-    document.getElementById('visit-note').value = '';
-    btn.innerHTML = '<i class="ti ti-check"></i>已儲存！';
-    setTimeout(() => { btn.innerHTML = '<i class="ti ti-device-floppy"></i>儲存紀錄'; btn.disabled = false; }, 2000);
-  } catch(e) {
-    btn.innerHTML = '<i class="ti ti-device-floppy"></i>儲存紀錄';
-    btn.disabled = false;
-    alert('儲存失敗，請稍後再試');
-  }
-}
-
-function updateStats() {
-  const signed = DB.filter(d => getGroupStatus(d.owners) === 'signed').length;
-  const partial = DB.filter(d => getGroupStatus(d.owners) === 'partial').length;
-  const willing = DB.filter(d => getGroupStatus(d.owners) === 'willing').length;
-  const unsigned = DB.filter(d => getGroupStatus(d.owners) === 'unsigned').length;
-  const total = DB.length;
-  const pct = Math.round(signed / total * 100);
-  document.getElementById('s-signed').textContent = signed;
-  document.getElementById('s-partial').textContent = partial;
-  document.getElementById('s-willing').textContent = willing;
-  document.getElementById('s-unsigned').textContent = unsigned;
-  document.getElementById('prog').style.width = pct + '%';
-  document.getElementById('prog-pct').textContent = pct + '%';
-
-  const allOwners = DB.flatMap(d => d.owners);
-  const uniqueNames = [...new Set(allOwners.map(o => o.name))];
-  const signedPeople = [...new Set(allOwners.filter(o => o.status === '已簽約').map(o => o.name))].length;
-  const totalLand = allOwners.reduce((a,o) => a + (o.land||0), 0);
-  const signedLand = allOwners.filter(o => o.status === '已簽約').reduce((a,o) => a + (o.land||0), 0);
-  const totalBld = allOwners.reduce((a,o) => a + (o.bld||0), 0);
-  const signedBld = allOwners.filter(o => o.status === '已簽約').reduce((a,o) => a + (o.bld||0), 0);
-
-  document.getElementById('stats-cards').innerHTML = `
+function updateStats(){
+  const signed=DB.filter(d=>getStatus(d.owners)==='signed').length;
+  const partial=DB.filter(d=>getStatus(d.owners)==='partial').length;
+  const willing=DB.filter(d=>getStatus(d.owners)==='willing').length;
+  const unsigned=DB.filter(d=>getStatus(d.owners)==='unsigned').length;
+  const total=DB.length,pct=Math.round(signed/total*100);
+  document.getElementById('s-signed').textContent=signed;
+  document.getElementById('s-partial').textContent=partial;
+  document.getElementById('s-willing').textContent=willing;
+  document.getElementById('s-unsigned').textContent=unsigned;
+  document.getElementById('prog').style.width=pct+'%';
+  document.getElementById('prog-pct').textContent=pct+'%';
+  const all=DB.flatMap(d=>d.owners);
+  const unames=[...new Set(all.map(o=>o.name))];
+  const sp=[...new Set(all.filter(o=>o.status==='已簽約').map(o=>o.name))].length;
+  const tl=all.reduce((a,o)=>a+(o.land||0),0),sl=all.filter(o=>o.status==='已簽約').reduce((a,o)=>a+(o.land||0),0);
+  const tb=all.reduce((a,o)=>a+(o.bld||0),0),sb=all.filter(o=>o.status==='已簽約').reduce((a,o)=>a+(o.bld||0),0);
+  document.getElementById('stats-cards').innerHTML=`
     <div class="stat-card green"><div class="stat-card-label">已簽約地址</div><div class="stat-card-value">${signed}</div><div class="stat-card-sub">共 ${total} 筆</div></div>
     <div class="stat-card yellow"><div class="stat-card-label">部分已簽約</div><div class="stat-card-value">${partial}</div><div class="stat-card-sub">尚有未簽約者</div></div>
     <div class="stat-card blue"><div class="stat-card-label">有意願</div><div class="stat-card-value">${willing}</div><div class="stat-card-sub">待跟進</div></div>
     <div class="stat-card red"><div class="stat-card-label">未簽約</div><div class="stat-card-value">${unsigned}</div><div class="stat-card-sub">需開發</div></div>
-    <div class="stat-card green"><div class="stat-card-label">已簽約人數</div><div class="stat-card-value">${signedPeople}</div><div class="stat-card-sub">共 ${uniqueNames.length} 人</div></div>
-    <div class="stat-card cyan"><div class="stat-card-label">整體進度</div><div class="stat-card-value">${pct}%</div><div class="stat-card-sub">以地址數計算</div></div>
-  `;
-
-  document.getElementById('pd-rows').innerHTML = [
-    { label:'地址簽約', val:signed, total, color:'var(--green)' },
-    { label:'人數簽約', val:signedPeople, total:uniqueNames.length, color:'var(--accent2)' },
-    { label:'土地坪數', val:signedLand.toFixed(0), total:totalLand.toFixed(0), color:'var(--yellow)' },
-    { label:'建物坪數', val:signedBld.toFixed(0), total:totalBld.toFixed(0), color:'var(--blue)' },
-  ].map(r => `<div class="pd-row">
-    <div class="pd-name">${r.label}</div>
-    <div class="pd-bar-wrap"><div class="pd-bar" style="width:${Math.round(r.val/r.total*100)}%;background:${r.color}"></div></div>
-    <div class="pd-val">${r.val} / ${r.total}</div>
-  </div>`).join('');
+    <div class="stat-card green"><div class="stat-card-label">已簽約人數</div><div class="stat-card-value">${sp}</div><div class="stat-card-sub">共 ${unames.length} 人</div></div>
+    <div class="stat-card cyan"><div class="stat-card-label">整體進度</div><div class="stat-card-value">${pct}%</div><div class="stat-card-sub">以地址數計算</div></div>`;
+  document.getElementById('pd-rows').innerHTML=[
+    {label:'地址簽約',val:signed,total,color:'var(--green)'},
+    {label:'人數簽約',val:sp,total:unames.length,color:'var(--accent2)'},
+    {label:'土地坪數',val:sl.toFixed(0),total:tl.toFixed(0),color:'var(--yellow)'},
+    {label:'建物坪數',val:sb.toFixed(0),total:tb.toFixed(0),color:'var(--blue)'},
+  ].map(r=>`<div class="pd-row"><div class="pd-name">${r.label}</div><div class="pd-bar-wrap"><div class="pd-bar" style="width:${Math.round(r.val/r.total*100)}%;background:${r.color}"></div></div><div class="pd-val">${r.val} / ${r.total}</div></div>`).join('');
 }
 
-function showPage(page) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-tab:not(.query-btn-top)').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.mobile-nav-item:not(.query-item)').forEach(t => t.classList.remove('active'));
+function showPage(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab:not(.qtab)').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.mobile-nav-item:not(.qitem)').forEach(t=>t.classList.remove('active'));
   document.getElementById(`page-${page}`).classList.add('active');
-  const idx = page === 'map' ? 0 : page === 'stats' ? 1 : 2;
-  document.querySelectorAll('.nav-tab:not(.query-btn-top)')[idx]?.classList.add('active');
-  document.querySelectorAll('.mobile-nav-item:not(.query-item)')[idx]?.classList.add('active');
-  if (page === 'records') loadRecordsPage();
+  const idx=page==='map'?0:page==='stats'?1:2;
+  document.querySelectorAll('.nav-tab:not(.qtab)')[idx]?.classList.add('active');
+  document.querySelectorAll('.mobile-nav-item:not(.qitem)')[idx]?.classList.add('active');
+  if(page==='records')loadRecordsPage();
   closePanel();
 }
 
-async function loadRecordsPage() {
-  const content = document.getElementById('records-content');
-  content.innerHTML = '<div class="loading"><div class="spinner"></div>載入中...</div>';
-  const visits = await loadVisits();
-  if (!visits.length) { content.innerHTML = '<p style="color:var(--text2);font-size:13px;padding:20px">尚無拜訪紀錄</p>'; return; }
-  content.innerHTML = `<table class="records-table">
-    <thead><tr><th>時間</th><th>地址</th><th>業務</th><th>狀態</th><th>備註</th></tr></thead>
-    <tbody>${visits.slice().reverse().map(r => `<tr>
+async function loadRecordsPage(){
+  const content=document.getElementById('records-content');
+  content.innerHTML='<div class="loading"><div class="spinner"></div>載入中...</div>';
+  const visits=await loadVisits();
+  if(!visits.length){content.innerHTML='<p style="color:var(--text2);font-size:13px;padding:20px">尚無拜訪紀錄</p>';return;}
+  content.innerHTML=`<table class="records-table"><thead><tr><th>時間</th><th>地址</th><th>業務</th><th>狀態</th><th>備註</th></tr></thead><tbody>`+
+    visits.slice().reverse().map(r=>`<tr>
       <td style="white-space:nowrap;color:var(--text2);font-size:11px">${r[0]||''}</td>
       <td>${(r[1]||'').replace('光復南路','')}</td>
       <td>${r[2]||''}</td>
       <td><span class="badge ${statusClass(r[3])}">${r[3]||''}</span></td>
-      <td style="color:var(--text2)">${r[4]||''}</td>
-    </tr>`).join('')}</tbody>
-  </table>`;
+      <td style="color:var(--text2)">${r[4]||''}</td></tr>`).join('')+`</tbody></table>`;
 }
 
-async function init() {
-  const rows = await loadData();
-  if (!rows.length) {
-    document.getElementById('loading').innerHTML = '⚠️ 無法載入資料，請確認 Google Sheets 共用設定';
-    return;
-  }
-  DB = buildDB(rows);
-  renderMap();
-  updateStats();
+async function init(){
+  const rows=await loadData();
+  if(!rows.length){document.getElementById('loading').innerHTML='⚠️ 無法載入資料，請確認 Google Sheets 共用設定';return;}
+  DB=buildDB(rows);renderMap();updateStats();
 }
 init();
 </script>
