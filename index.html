@@ -223,11 +223,12 @@ textarea { height: 64px; resize: none; margin-top: 5px; }
       <div class="prog-pct" id="prog-pct">0%</div>
     </div>
   </div>
-  <div class="nav-tabs">
-    <button class="nav-tab active" onclick="showPage('map')"><i class="ti ti-map-2"></i> 地圖</button>
-    <button class="nav-tab" onclick="showPage('stats')"><i class="ti ti-chart-pie"></i> 統計</button>
-    <button class="nav-tab" onclick="showPage('records')"><i class="ti ti-notes"></i> 紀錄</button>
-  </div>
+<div class="mobile-nav">
+  <div class="mobile-nav-item active" onclick="showPage('map')"><i class="ti ti-map-2"></i><span>地圖</span></div>
+  <div class="mobile-nav-item" onclick="showPage('stats')"><i class="ti ti-chart-pie"></i><span>統計</span></div>
+  <div class="mobile-nav-item" onclick="showPage('records')"><i class="ti ti-notes"></i><span>紀錄</span></div>
+  <div class="mobile-nav-item" onclick="window.open('https://ivyfuh.github.io/hanhuang-query/','_blank')" style="color:#22d3ee"><i class="ti ti-calculator"></i><span>權利試算</span></div>
+</div>
 </div>
 
 <div class="app">
